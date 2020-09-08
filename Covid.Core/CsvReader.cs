@@ -7,18 +7,35 @@ namespace Covid
 {
     public class CsvReader
     {
-        private static readonly string _csvPath = Path.Join(AppDomain.CurrentDomain.BaseDirectory, "covid-data.csv");
+        private static readonly string _covidDataPath = Path.Join(AppDomain.CurrentDomain.BaseDirectory, "Data", "covid-data.csv");
+        private static readonly string _testDataPath = Path.Join(AppDomain.CurrentDomain.BaseDirectory, "Data", "test-data.csv");
 
-        public List<DataEntry> Read()
+        public List<DataEntry> ReadCovidData()
         {
-            var data = new List<DataEntry>(); 
+            var data = new List<DataEntry>();
 
-            using (var csvReader = new StreamReader(_csvPath))
+            using (var csvReader = new StreamReader(_covidDataPath))
             {
                 string line;
                 while ((line = csvReader.ReadLine()) != null)
                 {
                     data.Add(DataEntry.Parse(line));
+                }
+            }
+
+            return data.ToList();
+        }
+
+        public List<string> ReadTestData()
+        {
+            var data = new List<string>();
+
+            using (var csvReader = new StreamReader(_testDataPath))
+            {
+                string line;
+                while ((line = csvReader.ReadLine()) != null)
+                {
+                    data.Add(line);
                 }
             }
 

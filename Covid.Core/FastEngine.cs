@@ -1,21 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace Covid.Solutions
+namespace Covid
 {
-    /// <summary>
-    /// Fastest version of the engine (is it?), improvement is to create an index by word (inverse lookup) 
-    /// so that during query time, entries are being retrieved in O(1) per query word.
-    /// 
-    /// The running time is O(qn), 
-    /// where q = word count of the query and n = the data entry count.
-    /// 
-    /// The average running time is expected to be a lot lower when the size and variety of the data increases.
-    /// </summary>
-    public class Engine5 : IEngine
+    public class FastEngine : IEngine
     {
         private readonly Dictionary<string, List<DataEntry>> _dataEntriesByWordIndex;
 
-        public Engine5(List<DataEntry> data)
+        public FastEngine(List<DataEntry> data)
         {
             _dataEntriesByWordIndex = GetDataEntriesByWordIndex(data);
         }
@@ -36,7 +27,7 @@ namespace Covid.Solutions
 
                 foreach (var word in questionWords)
                 {
-                    if(!index.ContainsKey(word))
+                    if (!index.ContainsKey(word))
                     {
                         index[word] = new List<DataEntry>();
                     }
@@ -63,7 +54,7 @@ namespace Covid.Solutions
 
             foreach (var queryWord in queryWords)
             {
-                if(!_dataEntriesByWordIndex.ContainsKey(queryWord))
+                if (!_dataEntriesByWordIndex.ContainsKey(queryWord))
                 {
                     continue;
                 }
@@ -72,13 +63,13 @@ namespace Covid.Solutions
 
                 foreach (var match in matches)
                 {
-                    if(!scores.ContainsKey(match))
+                    if (!scores.ContainsKey(match))
                     {
                         scores[match] = 0;
                     }
                     scores[match]++;
 
-                    if(scores[match] > bestScore)
+                    if (scores[match] > bestScore)
                     {
                         bestScore = scores[match];
                         bestMatch = match;

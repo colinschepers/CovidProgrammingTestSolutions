@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 
-namespace Covid
+namespace Covid.Console
 {
     /// <summary>
-    /// A slow engine.
+    /// A slow engine. Can you optimize the matching logic?
     /// </summary>
-    public class Engine : IEngine
+    public class MyEngine : IEngine
     {
         private readonly List<DataEntry> _data;
 
-        public Engine(List<DataEntry> data)
+        public MyEngine(List<DataEntry> data)
         {
             _data = data;
         }

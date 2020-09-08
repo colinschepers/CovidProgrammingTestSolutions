@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace Covid
 {
-    [DebuggerDisplay("{QuestionText}")]
+    [DebuggerDisplay("{QuestionId}")]
     public class DataEntry
     {
         public int QuestionId { get; set; }
