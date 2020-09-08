@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Covid.Core;
+using System.Collections.Generic;
 
 namespace Covid.Solutions
 {
@@ -33,7 +34,6 @@ namespace Covid.Solutions
             foreach (var item in _data)
             {
                 var score = 0;
-
                 var questionWords = Tokenizer.Tokenize(item.QuestionText);
 
                 foreach (var queryWord in queryWords)

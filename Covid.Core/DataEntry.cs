@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Covid
+namespace Covid.Core
 {
     [DebuggerDisplay("{QuestionId}")]
     public class DataEntry

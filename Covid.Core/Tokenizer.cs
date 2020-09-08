@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Covid
+namespace Covid.Core
 {
     public static class Tokenizer
     {

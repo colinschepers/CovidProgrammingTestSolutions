@@ -1,23 +1,15 @@
-﻿using Covid.Core;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Covid.Solutions
+namespace Covid.Core.Engines
 {
-    /// <summary>
-    /// Third slowest version of the engine, improvement is to move the costly question string tokenization
-    /// to the initialization of the engine (preprocessing) so that it does not have to be done during query time.
-    /// 
-    /// The running time is O(nqm), 
-    /// where n = the data entry count, q = word count of the query and m = average words per question.
-    /// </summary>
-    public class Engine3 : IEngine
+    public class FastEngine : IEngine
     {
-        private readonly Dictionary<DataEntry, List<string>> _data;
+        private readonly Dictionary<DataEntry, HashSet<string>> _data;
 
-        public Engine3(List<DataEntry> data)
+        public FastEngine(List<DataEntry> data)
         {
-            _data = data.ToDictionary(x => x, x => Tokenizer.Tokenize(x.QuestionText));
+            _data = data.ToDictionary(x => x, x => new HashSet<string>(Tokenizer.Tokenize(x.QuestionText)));
         }
 
         /// <summary>

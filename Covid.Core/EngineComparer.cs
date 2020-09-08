@@ -3,7 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Covid
+namespace Covid.Core
 {
     public static class EngineComparer
     {

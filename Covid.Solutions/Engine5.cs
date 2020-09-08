@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Covid.Core;
+using System.Collections.Generic;
 
 namespace Covid.Solutions
 {

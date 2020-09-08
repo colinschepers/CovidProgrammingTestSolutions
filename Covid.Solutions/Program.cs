@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Covid.Core;
+using System;
 
 namespace Covid.Solutions
 {

@@ -1,19 +1,12 @@
-﻿using Covid.Core;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Covid.Solutions
+namespace Covid.Core.Engines
 {
-    /// <summary>
-    /// The slowest version of the engine.
-    /// 
-    /// The running time is O(nqmqm) = O(n * q^2 * m^2), 
-    /// where q = word count of the query, n = the data entry count and m = average words per question.
-    /// </summary>
-    public class Engine1 : IEngine
+    public class SlowEngine : IEngine
     {
         private readonly List<DataEntry> _data;
 
-        public Engine1(List<DataEntry> data)
+        public SlowEngine(List<DataEntry> data)
         {
             _data = data;
         }
@@ -28,20 +21,18 @@ namespace Covid.Solutions
             DataEntry bestMatch = null;
             int bestScore = 0;
 
+            var queryWords = Tokenizer.Tokenize(query);
+
             foreach (var item in _data)
             {
                 var score = 0;
-                var queryWords = Tokenizer.Tokenize(query);
                 var questionWords = Tokenizer.Tokenize(item.QuestionText);
 
                 foreach (var queryWord in queryWords)
                 {
-                    foreach (var questionWord in questionWords)
+                    if (questionWords.Contains(queryWord))
                     {
-                        if(queryWord == questionWord)
-                        {
-                            score++;
-                        }
+                        score++;
                     }
                 }
 

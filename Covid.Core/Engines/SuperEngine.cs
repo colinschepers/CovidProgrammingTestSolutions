@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace Covid
+namespace Covid.Core.Engines
 {
-    public class FastEngine : IEngine
+    public class SuperEngine : IEngine
     {
         private readonly Dictionary<string, List<DataEntry>> _dataEntriesByWordIndex;
 
-        public FastEngine(List<DataEntry> data)
+        public SuperEngine(List<DataEntry> data)
         {
             _dataEntriesByWordIndex = GetDataEntriesByWordIndex(data);
         }

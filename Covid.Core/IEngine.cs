@@ -1,4 +1,4 @@
-﻿namespace Covid
+﻿namespace Covid.Core
 {
     public interface IEngine
     {

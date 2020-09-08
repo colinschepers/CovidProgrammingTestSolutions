@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Covid.Core;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Covid.Solutions
@@ -11,13 +12,11 @@ namespace Covid.Solutions
     /// </summary>
     public class Engine4 : IEngine
     {
-        private readonly List<DataEntry> _data;
-        private readonly Dictionary<DataEntry, HashSet<string>> _questionWords;
+        private readonly Dictionary<DataEntry, HashSet<string>> _data;
 
         public Engine4(List<DataEntry> data)
         {
-            _data = data;
-            _questionWords = _data.ToDictionary(x => x, x => new HashSet<string>(Tokenizer.Tokenize(x.QuestionText)));
+            _data = data.ToDictionary(x => x, x => new HashSet<string>(Tokenizer.Tokenize(x.QuestionText)));
         }
 
         /// <summary>
@@ -32,11 +31,10 @@ namespace Covid.Solutions
 
             var queryWords = Tokenizer.Tokenize(query);
 
-            foreach (var item in _data)
+            foreach (var kvp in _data)
             {
                 var score = 0;
-
-                var questionWords = _questionWords[item];
+                var questionWords = kvp.Value;
 
                 foreach (var queryWord in queryWords)
                 {
@@ -49,7 +47,7 @@ namespace Covid.Solutions
                 if (score > bestScore)
                 {
                     bestScore = score;
-                    bestMatch = item;
+                    bestMatch = kvp.Key;
                 }
             }
 
